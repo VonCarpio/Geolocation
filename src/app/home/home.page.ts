@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Geolocation } from '@capacitor/geolocation'
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-home',
@@ -7,17 +7,22 @@ import { Geolocation } from '@capacitor/geolocation'
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
   locations: { latitud: number; longitud: number; date: Date}[]=[];
 
   constructor() {}
-
-   async geolocation() {
+ 
+   async getLocation() {
     try{
       const position = await Geolocation.getCurrentPosition();
-      console.log(position);
+      const location = {
+        latitud: position.coords.latitude,
+        longitud: position.coords.longitude,
+        date: new Date()
+      };
+      this.locations.push(location)
+      console.log(this.locations)
     }catch(e){
-      console.log(e);
+      console.log('Error getting the location',e);
     }
   }
 }
