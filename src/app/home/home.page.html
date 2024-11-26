@@ -5,20 +5,22 @@
 </ion-header>
 
 <ion-content>
-    <ion-button expand = "full" (click)="getLocation()">Registrar ubicaciones</ion-button>
+    <ion-button expand="full" (click)="getLocation()">Registrar ubicación</ion-button>
     <ion-list *ngIf="locations?.length">
+        <ion-button expand="full"(click)="resetLocations()">Borrar ubicaciones</ion-button>
         <ion-item *ngFor="let location of locations">
             <ion-label>
-                <h2>Latitude:{{location.latitud}}</h2>
-                <h2>Longitude:{{location.longitud}}</h2>
-                <b>{{location.date}}</b>
+                <p>Ubicación</p>
+                <h2>Latitud: {{ location.latitud }}</h2>
+                <h2>Longitud: {{ location.longitud }}</h2>
+                <b>Registrada el {{ location.date }}</b>
             </ion-label>
         </ion-item>
     </ion-list>
     <ion-list *ngIf="!locations?.length">
         <ion-item>
             <ion-label>
-                <h2>There are no locations availables</h2>
+                <h2>No hay ubicaciones registradas</h2>
             </ion-label>
         </ion-item>
     </ion-list>
